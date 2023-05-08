@@ -7,7 +7,11 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 CREATE TABLE job_title (
     id INT NOT NULL PRIMARY KEY,
-    title VARCHAR(30) NOT NULL 
+    title VARCHAR(30) NOT NULL,
+    salary INT NOT NULL,
+    department_id INT NOT NULL,
+    FOREIGN KEY (department_id) 
+        REFERENCES department(id)
 );
 
 CREATE TABLE department (
@@ -26,13 +30,10 @@ CREATE TABLE employees (
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     job_title_id INT NOT NULL,
-    department_id INT NOT NULL,
-    salary INT NOT NULL,
     manager_report INT,
     FOREIGN KEY (job_title_id) 
         REFERENCES job_title(id),
-    FOREIGN KEY (department_id) 
-        REFERENCES department(id),
     FOREIGN KEY (manager_report)
-        REFERENCES manager(id)    
+        REFERENCES manager(id)     
 );
+
