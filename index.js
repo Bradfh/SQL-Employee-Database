@@ -23,9 +23,12 @@ function startApp() {
         'View All Roles',
         'View All Departments',
         'Add Employee',
+        'Add Department',
+        'Add Role',
         'Update Employee Role',
         'Exit'
-      ]
+      ],
+      pageSize: 8
   })
   .then(function (answer) {
     switch (answer.action) {
@@ -40,6 +43,12 @@ function startApp() {
         break;
       case 'Add Employee':
         addEmployee();
+        break;
+      case 'Add Department':
+        addDepartment();
+        break;
+      case 'Add Role':
+        addRole();
         break;
       case 'Update Employee Role':
         updateEmployeeRole();
@@ -148,5 +157,64 @@ function updateEmployeeRole() {
     );
   });
 }
+
+function addDepartment() {
+  inquirer.prompt([
+    {
+      name: 'department_name',
+      type: 'input',
+      message: "What is the name of the department you would like to add?"
+    }
+  ])
+  .then(function (answer) {
+    connection.query(
+      'INSERT INTO department SET ?',
+      {
+        name: answer.department_name
+      },
+      function (err) {
+        if (err) throw err;
+        console.log('Your department was added successfully!');
+        startApp();
+      }
+    );
+  });
+}
+
+function addRole() {
+  inquirer.prompt([
+    {
+      name: 'role_name',
+      type: 'input',
+      message: "What is the name of the role you would like to add?"
+    },
+    {
+      name: 'salary',
+      type: 'input',
+      message: "What is the salary for this role?"
+    },
+    {
+      name: 'department_id',
+      type: 'input',
+      message: "What is the department ID for this role?"
+    }
+  ])
+  .then(function (answer) {
+    connection.query(
+      'INSERT INTO job_title SET ?',
+      {
+        title: answer.role_name,
+        salary: answer.salary,
+        id: answer.department_id
+      },
+      function (err) {
+        if (err) throw err;
+        console.log('Your role was added successfully!');
+        startApp();
+      }
+    );
+  });
+}
+
 
 startApp();
