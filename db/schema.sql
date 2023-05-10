@@ -6,7 +6,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 
 CREATE TABLE job_title (
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
     salary INT NOT NULL,
     department_id INT NOT NULL,

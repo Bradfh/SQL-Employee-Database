@@ -201,20 +201,32 @@ function addRole() {
   ])
   .then(function (answer) {
     connection.query(
-      'INSERT INTO job_title SET ?',
-      {
-        title: answer.role_name,
-        salary: answer.salary,
-        id: answer.department_id
-      },
-      function (err) {
+      'SELECT id FROM department WHERE id = ?',
+      [answer.department_id],
+      function (err, res) {
         if (err) throw err;
-        console.log('Your role was added successfully!');
-        startApp();
+
+        if (res.length === 0) {
+          console.log('Invalid department ID. Please try again.');
+          startApp();
+        } else {
+          connection.query(
+            'INSERT INTO job_title SET ?',
+            {
+              title: answer.role_name,
+              salary: answer.salary,
+              department_id: answer.department_id
+            },
+            function (err) {
+              if (err) throw err;
+              console.log('Your role was added successfully!');
+              startApp();
+            }
+          );
+        }
       }
     );
   });
 }
-
 
 startApp();
