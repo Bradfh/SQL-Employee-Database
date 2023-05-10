@@ -2,6 +2,9 @@
 # Module 12 Note Taker Express
 
 This project uses MySQL to create a database of employees and adds functionality to edit the database using the CLI.
+## Video Walkthrough
+
+https://youtu.be/A_yd2gbs88o
 ## Usage/Examples
 
 To use this app you'll need to clone the repo.  Open the files in your IDE making sure to install the dependencies.  Requires Node.
