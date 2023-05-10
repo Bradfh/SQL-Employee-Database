@@ -4,7 +4,8 @@
 This project uses MySQL to create a database of employees and adds functionality to edit the database using the CLI.
 ## Video Walkthrough
 
-https://youtu.be/A_yd2gbs88o
+[SQLWalkthrough.webm](https://github.com/Bradfh/SQL-Employee-Database/assets/128874401/b22c868b-4b13-483e-81f2-21cc4bc635ae)
+
 ## Usage/Examples
 
 To use this app you'll need to clone the repo.  Open the files in your IDE making sure to install the dependencies.  Requires Node.
